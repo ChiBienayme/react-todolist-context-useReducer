@@ -11,7 +11,10 @@ const initState = {
     todoInput: ''
 }
 
+
+
 function reducer(state, action) {
+
     switch(action.type) {
         case SET_TODO_INPUT:
             return {

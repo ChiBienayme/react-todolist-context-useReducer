@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect   } from 'react'
 import { useStore, actions } from './store'
 
 function App() {
@@ -10,6 +10,10 @@ function App() {
 
   const [editIndex, setEditIndex] = useState(null)
   const [editValue, setEditValue] = useState('')
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(state.todos))
+  }, [state.todos])
   
   const handleAdd = () => {
     if (todoInput !== '') {
@@ -24,9 +28,7 @@ function App() {
     dispatch(actions.editTodo({index, value}))
     setEditIndex(null)
     setEditValue('')
-    console.log(value)
   }
-
 
   return (
     <div style={{ padding: 50 }}>
